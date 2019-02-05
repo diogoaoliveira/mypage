@@ -46,7 +46,7 @@ const TimelineMark = styled.span`
     border-radius: 50%;
     left: -6px;
     background: white;
-    top: 7px;
+    top: 3px;
   }
 `;
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import Image from '../components/image';
 import SEO from '../components/seo';
 import ExperienceList from '../components/ExperienceList';
+import WorkList from '../components/WorkList';
 import Skill from '../components/skill';
 
 const IndexPage = () => (
@@ -24,7 +24,8 @@ const IndexPage = () => (
     </div>
     <h2>Experience</h2>
     <ExperienceList />
-
+    <h2>Work</h2>
+    <WorkList />
     <h2>Skills</h2>
     <Skill />
   </Layout>
