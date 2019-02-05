@@ -46,7 +46,7 @@ const TimelineMark = styled.span`
     border-radius: 50%;
     left: -6px;
     background: white;
-    top: 2px;
+    top: 7px;
   }
 `;
 
@@ -59,6 +59,7 @@ const ExperienceList = () => (
     <List>
       <Experience>
         <TimelineMark />
+        <p>2010 - present</p>
         <Position>Position @Company Inc.</Position>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -71,6 +72,7 @@ const ExperienceList = () => (
       </Experience>
       <Experience>
         <TimelineMark />
+        <p>2008 - 2010</p>
         <Position>Position @Company Inc.</Position>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -83,6 +85,7 @@ const ExperienceList = () => (
       </Experience>
       <Experience>
         <TimelineMark />
+        <p>2006 - 2008</p>
         <Position>Position @Company Inc.</Position>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
