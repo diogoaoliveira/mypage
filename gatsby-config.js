@@ -6,9 +6,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
   siteMetadata: {
-    title: `John Doe`,
+    title: `Diogo Oliveira`,
     description: `Hey stranger!`,
-    author: `@johndoe`,
+    author: `@diogoaoliveira`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

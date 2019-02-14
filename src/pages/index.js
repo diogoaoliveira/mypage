@@ -7,23 +7,22 @@ import ExperienceList from '../components/ExperienceList';
 import WorkList from '../components/WorkList';
 import Skill from '../components/skill';
 
-const IndexPage = ({ data: { contentfulMainPage } }) =>
-  console.log(contentfulMainPage) || (
-    <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <h2>Introduction</h2>
-      <p>{contentfulMainPage.introduction.introduction}</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
-      <h2>Experience</h2>
-      <ExperienceList experiences={contentfulMainPage.experiences} />
-      <h2>Work</h2>
-      <WorkList projects={contentfulMainPage.projects} />
-      <h2>Skills</h2>
-      <Skill />
-    </Layout>
-  );
+const IndexPage = ({ data: { contentfulMainPage } }) => (
+  <Layout>
+    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <h2>Introduction</h2>
+    <p>{contentfulMainPage.introduction.introduction}</p>
+    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <Image />
+    </div>
+    <h2>Experience</h2>
+    <ExperienceList experiences={contentfulMainPage.experiences} />
+    <h2>Work</h2>
+    <WorkList projects={contentfulMainPage.projects} />
+    <h2>Skills</h2>
+    <Skill />
+  </Layout>
+);
 
 export const MainPageQuery = graphql`
   query MainPageQuery {

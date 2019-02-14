@@ -29,10 +29,7 @@ const WorkList = ({ projects }) => (
       <div key={project.title}>
         {project.projectImage.fluid.src ? (
           <a href={project.url} rel="noopener noreferrer" target="_blank">
-            <ProjectImage
-              onClick={() => console.log('Test!')}
-              fluid={project.projectImage.fluid}
-            />
+            <ProjectImage fluid={project.projectImage.fluid} />
           </a>
         ) : (
           <GrayPhoto />

@@ -26,11 +26,7 @@ const Image = () => (
         }
       }
     `}
-    render={data =>
-      console.log(data) || (
-        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-      )
-    }
+    render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} />}
   />
 );
 export default Image;
