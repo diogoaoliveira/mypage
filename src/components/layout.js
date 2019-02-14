@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-
-import Header from './header';
 import './layout.css';
 
 const Layout = ({ children }) => (
@@ -14,9 +12,22 @@ const Layout = ({ children }) => (
             title
           }
         }
+        contentfulMainPage {
+          profile {
+            name
+            job
+            email
+            github
+            photo {
+              fluid {
+                ...GatsbyContentfulFluid
+              }
+            }
+          }
+        }
       }
     `}
-    render={data => (
+    render={({ site, contentfulMainPage: { profile } }) => (
       <main style={{ display: 'flex', height: '100vh' }}>
         <section
           style={{
@@ -41,18 +52,18 @@ const Layout = ({ children }) => (
           />
 
           <div style={{ padding: '0 30px' }}>
-            <h3 style={{ marginBottom: 10 }}>John Doe</h3>
-            <p>FrontEnd Engineer</p>
+            <h3 style={{ marginBottom: 10 }}>{profile.name}</h3>
+            <p>{profile.job}</p>
           </div>
 
           <div style={{ padding: '0 30px' }}>
             <h4 style={{ marginBottom: 10 }}>Email</h4>
-            <p>john@doe.com</p>
+            <p>{profile.email}</p>
           </div>
 
           <div style={{ padding: '0 30px' }}>
             <h4 style={{ marginBottom: 10 }}>Github</h4>
-            <p>github.com/johndoe</p>
+            <p>github.com/{profile.github}</p>
           </div>
         </section>
         <section
