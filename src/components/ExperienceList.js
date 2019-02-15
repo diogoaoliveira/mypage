@@ -23,9 +23,7 @@ const List = styled.ul`
 const Experience = styled.li`
   margin: 20px;
   position: relative;
-
-  &::before {
-  }
+  margin-bottom: 50px;
 `;
 
 const TimelineMark = styled.span`

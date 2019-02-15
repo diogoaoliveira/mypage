@@ -1,7 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import './layout.css';
+
+const MainContainer = styled.main`
+  display: flex;
+  height: 100vh;
+
+  @media only screen and (max-width: 420px) {
+    display: block;
+    height: auto;
+  }
+`;
+
+const ProfileContainer = styled.section`
+  background-color: #34495e;
+  width: 360px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 25px;
+  color: white;
+
+  @media only screen and (max-width: 420px) {
+    width: auto;
+    max-width: none;
+  }
+`;
+
+const Info = styled.div`
+  padding: 0 30px;
+
+  h3,
+  h4 {
+    margin-bottom: 10px;
+  }
+
+  @media only screen and (max-width: 420px) {
+    h3,
+    h3 ~ p {
+      text-align: center;
+    }
+  }
+`;
+
+const LayoutContainer = styled.section`
+  padding: 50px 250px 25px 200px;
+  overflow: scroll;
+  @media only screen and (max-width: 420px) {
+    overflow: auto;
+    padding: 20px;
+  }
+`;
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -28,58 +80,48 @@ const Layout = ({ children }) => (
       }
     `}
     render={({ site, contentfulMainPage: { profile } }) => (
-      <main style={{ display: 'flex', height: '100vh' }}>
-        <section
-          style={{
-            backgroundColor: '#34495e',
-            width: 360,
-            maxWidth: 360,
-            display: 'flex',
-            flexDirection: 'column',
-            padding: '50px 25px',
-            color: 'white',
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: '#bdc3c7',
-              height: 180,
-              width: 180,
-              borderRadius: 90,
-              alignSelf: 'center',
-              marginBottom: 50,
-            }}
+      <MainContainer>
+        <ProfileContainer>
+          {/* <div
+              style={{
+                backgroundColor: '#bdc3c7',
+                height: 180,
+                width: 180,
+                borderRadius: 90,
+                alignSelf: 'center',
+                marginBottom: 50,
+              }}
+            /> */}
+
+          <Img
+            fluid={profile.photo.fluid}
+            style={{ width: 200, marginBottom: 50, alignSelf: 'center' }}
           />
 
-          <div style={{ padding: '0 30px' }}>
-            <h3 style={{ marginBottom: 10 }}>{profile.name}</h3>
+          <Info>
+            <h3>{profile.name}</h3>
             <p>{profile.job}</p>
-          </div>
+          </Info>
 
-          <div style={{ padding: '0 30px' }}>
-            <h4 style={{ marginBottom: 10 }}>Email</h4>
+          <Info>
+            <h4>Email</h4>
             <p>{profile.email}</p>
-          </div>
+          </Info>
 
-          <div style={{ padding: '0 30px' }}>
-            <h4 style={{ marginBottom: 10 }}>Github</h4>
+          <Info>
+            <h4>Github</h4>
             <p>github.com/{profile.github}</p>
-          </div>
-        </section>
-        <section
-          style={{
-            padding: '50px 250px 25px 200px',
-            overflow: 'scroll',
-          }}
-        >
+          </Info>
+        </ProfileContainer>
+        <LayoutContainer>
           <main>{children}</main>
           <footer>
             © {new Date().getFullYear()}, Built with
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a>
           </footer>
-        </section>
-      </main>
+        </LayoutContainer>
+      </MainContainer>
     )}
   />
 );

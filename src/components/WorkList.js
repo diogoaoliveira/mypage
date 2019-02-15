@@ -5,6 +5,10 @@ import Img from 'gatsby-image';
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
+  @media only screen and (max-width: 420px) {
+    grid-template-columns: auto;
+  }
 `;
 
 const ProjectImage = styled(Img)`
