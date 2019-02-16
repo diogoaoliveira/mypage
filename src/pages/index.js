@@ -20,7 +20,7 @@ const IndexPage = ({ data: { contentfulMainPage } }) => (
     <h2>Work</h2>
     <WorkList projects={contentfulMainPage.projects} />
     <h2>Skills</h2>
-    <Skill />
+    <Skill skills={contentfulMainPage.skills} />
   </Layout>
 );
 
@@ -29,17 +29,6 @@ export const MainPageQuery = graphql`
     contentfulMainPage {
       introduction {
         introduction
-      }
-      profile {
-        name
-        job
-        email
-        github
-        photo {
-          fluid {
-            src
-          }
-        }
       }
       experiences {
         position
@@ -53,6 +42,14 @@ export const MainPageQuery = graphql`
         title
         url
         projectImage {
+          fluid {
+            ...GatsbyContentfulFluid
+          }
+        }
+      }
+      skills {
+        name
+        image {
           fluid {
             ...GatsbyContentfulFluid
           }

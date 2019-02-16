@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import posed from 'react-pose';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import './layout.css';
 import Profile from './Profile';
 

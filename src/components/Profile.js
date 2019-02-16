@@ -27,6 +27,15 @@ const ProfileContainer = styled(AnimatedSection)`
   }
 `;
 
+const PhotoPlaceholder = styled.div`
+  background-color: #bdc3c7;
+  height: 180px;
+  width: 180px;
+  border-radius: 90px;
+  align-self: center;
+  margin-bottom: 50px;
+`;
+
 const Info = styled.div`
   padding: 0 30px;
 
@@ -64,21 +73,14 @@ class Profile extends Component {
     const { profile } = this.props;
     return (
       <ProfileContainer pose={isOpen ? 'open' : 'closed'}>
-        {/* <div
-              style={{
-                backgroundColor: '#bdc3c7',
-                height: 180,
-                width: 180,
-                borderRadius: 90,
-                alignSelf: 'center',
-                marginBottom: 50,
-              }}
-            /> */}
-
-        <Img
-          fluid={profile.photo.fluid}
-          style={{ width: 200, marginBottom: 50, alignSelf: 'center' }}
-        />
+        {profile.photo.fluid.src ? (
+          <Img
+            fluid={profile.photo.fluid}
+            style={{ width: 200, marginBottom: 50, alignSelf: 'center' }}
+          />
+        ) : (
+          <PhotoPlaceholder />
+        )}
 
         <Info>
           <h3>{profile.name}</h3>
