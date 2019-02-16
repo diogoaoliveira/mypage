@@ -23,16 +23,15 @@ const SkillImage = styled(Img)`
   width: 50px;
 `;
 
-const Skill = ({ skills }) =>
-  console.log(skills) || (
-    <Container>
-      {skills.map(skill => (
-        <ImageContainer key={skill.name}>
-          <SkillImage fluid={skill.image.fluid} />
-          <SkillName>{skill.name}</SkillName>
-        </ImageContainer>
-      ))}
-    </Container>
-  );
+const Skill = ({ skills }) => (
+  <Container>
+    {skills.map(skill => (
+      <ImageContainer key={skill.name}>
+        <SkillImage fluid={skill.image.fluid} />
+        <SkillName>{skill.name}</SkillName>
+      </ImageContainer>
+    ))}
+  </Container>
+);
 
 export default Skill;
