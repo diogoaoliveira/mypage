@@ -57,7 +57,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.showProfile(), 100);
+    this.showProfile();
   }
 
   showProfile = () =>
