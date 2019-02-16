@@ -10,6 +10,7 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   display: flex;
+  margin-right: 10px;
 `;
 
 const SkillName = styled.h4`
