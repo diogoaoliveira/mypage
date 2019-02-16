@@ -6,7 +6,6 @@ import Img from 'gatsby-image';
 const AnimatedSection = posed.section({
   open: {
     x: '0%',
-    delayChildren: 200,
     staggerChildren: 50,
   },
   closed: { x: '-100%', delay: 300 },
@@ -58,7 +57,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.showProfile(), 1000);
+    setTimeout(() => this.showProfile(), 100);
   }
 
   showProfile = () =>
