@@ -6,6 +6,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+
+  @media only screen and (max-width: 420px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 10px;
+  }
 `;
 
 const ImageContainer = styled.div`
