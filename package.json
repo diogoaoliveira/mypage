@@ -1,14 +1,15 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "diogo-cv-website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
+  "description": "Diogo Website and Blog",
+  "version": "0.1.2",
   "author": "Diogo Oliveira <diogo.augustoo@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
     "dotenv": "^6.2.0",
     "gatsby": "^2.0.111",
     "gatsby-image": "^2.0.29",
+    "gatsby-plugin-google-analytics": "^2.1.1",
     "gatsby-plugin-manifest": "^2.0.17",
     "gatsby-plugin-offline": "^2.0.22",
     "gatsby-plugin-react-helmet": "^3.0.6",

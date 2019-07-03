@@ -24,13 +24,21 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Diogo Oliveira`,
+        short_name: `diogoaoliveira`,
         start_url: `/`,
         background_color: `#34495e`,
         theme_color: `#34495e`,
         display: `minimal-ui`,
         icon: `src/images/doge-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.ANALYTICS_ID,
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
       },
     },
     {
