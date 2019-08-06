@@ -42,7 +42,7 @@ const TimelineMark = styled.span`
     border: 2px solid #aaa;
     position: absolute;
     border-radius: 50%;
-    left: -6px;
+    left: -8px;
     background: white;
     top: 3px;
   }

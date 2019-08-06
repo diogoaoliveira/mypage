@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import posed from 'react-pose';
 import Img from 'gatsby-image';
 
-const AnimatedSection = posed.section({
-  open: {
-    x: '0%',
-    staggerChildren: 50,
-  },
-  closed: { x: '-100%', delay: 300 },
-});
-
-const ProfileContainer = styled(AnimatedSection)`
-  background-color: #34495e;
-  width: 360px;
-  max-width: 360px;
+const ProfileContainer = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 50px 25px;
-  color: white;
+  align-items: center;
+  flex: 1;
 
   @media only screen and (max-width: 420px) {
     width: auto;
@@ -51,37 +40,48 @@ const Info = styled.div`
   }
 `;
 
+const Description = styled.p`
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  line-height: 1.25;
+  color: #757575;
+`;
+
 class Profile extends Component {
-  state = {
-    isOpen: false,
-  };
-
-  componentDidMount() {
-    this.showProfile();
-  }
-
-  showProfile = () =>
-    this.setState(prevState => {
-      return {
-        isOpen: !prevState.isOpen,
-      };
-    });
-
   render() {
-    const { isOpen } = this.state;
     const { profile } = this.props;
     return (
-      <ProfileContainer pose={isOpen ? 'open' : 'closed'}>
+      <ProfileContainer>
+        <p style={{ marginTop: 135, marginBottom: 10 }}>Hey, my name is</p>
+        <h1 style={{ marginBottom: 20 }}>Diogo Oliveira</h1>
+        <Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          nec augue mattis, placerat mauris sed, sagittis urna.
+        </Description>
+        <button
+          style={{
+            width: 120,
+            height: 40,
+            borderRadius: 24,
+            border: '1px solid #235bc5',
+            color: '#235bc5',
+            marginBottom: 40,
+          }}
+        >
+          Contact me!
+        </button>
         {profile.photo.fluid.src ? (
           <Img
             fluid={profile.photo.fluid}
-            style={{ width: 200, marginBottom: 50, alignSelf: 'center' }}
+            style={{ width: 200, marginBottom: 50 }}
           />
         ) : (
           <PhotoPlaceholder />
         )}
 
-        <Info>
+        {/* <Info>
           <h3>{profile.name}</h3>
           <p>{profile.job}</p>
         </Info>
@@ -94,7 +94,7 @@ class Profile extends Component {
         <Info>
           <h4>Github</h4>
           <p>github.com/{profile.github}</p>
-        </Info>
+        </Info> */}
       </ProfileContainer>
     );
   }
