@@ -1,61 +1,149 @@
-const dotenv = require('dotenv');
+require(`dotenv`).config()
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
+const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
 
 module.exports = {
   siteMetadata: {
-    title: `Diogo Oliveira`,
-    description: `Hey stranger!`,
-    author: `@diogoaoliveira`,
+    siteTitle: 'diogoaoliveira',
+    siteTitleAlt: `Diogo Oliveira | diogoaoliveira.dev`,
+    author: 'diogoaoliveira.'
+  },
+  flags: {
+    FAST_DEV: true,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `@lekoarts/gatsby-theme-minimal-blog`,
+      // See the theme's README for all available options
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        navigation: [
+          {
+            title: `Blog`,
+            slug: `/blog`,
+          },
+          {
+            title: `About`,
+            slug: `/about`,
+          },
+        ],
+        externalLinks: [
+          {
+            name: `Twitter`,
+            url: `https://twitter.com/diogoaoliveira`,
+          },
+          {
+            name: `GitHub`,
+            url: `https://github.com/diogoaoliveira`,
+          },
+        ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [`https://fonts.gstatic.com`],
+        interval: 300,
+        timeout: 30000,
+        web: [
+          {
+            name: `IBM Plex Sans`,
+            file: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap`,
+          },
+        ],
+      },
+    },
+    googleAnalyticsTrackingId && {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+      },
+    },
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Diogo Oliveira`,
+        name: `diogoaoliveira.dev - home`,
         short_name: `diogoaoliveira`,
+        description: `This is about diogoaoliveira and stuffs.`,
         start_url: `/`,
-        background_color: `#34495e`,
+        background_color: `#fff`,
         theme_color: `#34495e`,
-        display: `minimal-ui`,
-        icon: `src/images/doge-icon.png`, // This path is relative to the root of the site.
+        display: `standalone`,
+        icons: [
+          {
+            src: `/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/doge-icon.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
       },
     },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-gatsby-cloud`,
+    `gatsby-plugin-netlify`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-feed`,
       options: {
-        trackingId: 'UA-143254713-1',
-        // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: false,
+        query: `
+          {
+            site {
+              siteMetadata {
+                title: siteTitle
+                description: siteDescription
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allPost } }) =>
+              allPost.nodes.map((post) => {
+                const url = site.siteMetadata.siteUrl + post.slug
+                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`
+
+                return {
+                  title: post.title,
+                  date: post.date,
+                  excerpt: post.excerpt,
+                  url,
+                  guid: url,
+                  custom_elements: [{ "content:encoded": content }],
+                }
+              }),
+            query: `
+              {
+                allPost(sort: { fields: date, order: DESC }) {
+                  nodes {
+                    title
+                    date(formatString: "MMMM D, YYYY")
+                    excerpt
+                    slug
+                  }
+                }
+              }
+            `,
+            output: `rss.xml`,
+            title: `diogoaoliveira.dev`,
+          },
+        ],
       },
     },
-    {
-      resolve: `gatsby-plugin-styled-components`,
+    shouldAnalyseBundle && {
+      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
       options: {
-        ssr: true,
+        analyzerMode: `static`,
+        reportFilename: `_bundle.html`,
+        openAnalyzer: false,
       },
     },
-    {
-      resolve: 'gatsby-source-contentful',
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
-    },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    'gatsby-plugin-offline',
-  ],
-};
+  ].filter(Boolean),
+}
