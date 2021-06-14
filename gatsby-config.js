@@ -1,11 +1,11 @@
 require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
+const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID || 'UA-143254713-1'
 
 module.exports = {
   siteMetadata: {
-    siteTitle: 'diogoaoliveira.',
+    siteTitle: 'diogoaoliveira',
     siteTitleAlt: `Diogo Oliveira | diogoaoliveira.dev`,
     author: 'diogoaoliveira.'
   },
@@ -66,19 +66,19 @@ module.exports = {
       options: {
         name: `diogoaoliveira.dev - home`,
         short_name: `diogoaoliveira`,
-        description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+        description: `This is about diogoaoliveira and stuffs.`,
         start_url: `/`,
         background_color: `#fff`,
-        theme_color: `#6B46C1`,
+        theme_color: `#34495e`,
         display: `standalone`,
         icons: [
           {
-            src: `/android-chrome-192x192.png`,
+            src: `/doge-icon.png`,
             sizes: `192x192`,
             type: `image/png`,
           },
           {
-            src: `/android-chrome-512x512.png`,
+            src: `/doge-icon.png`,
             sizes: `512x512`,
             type: `image/png`,
           },
