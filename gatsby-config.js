@@ -1,7 +1,7 @@
 require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID || 'UA-143254713-1'
+const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
 
 module.exports = {
   siteMetadata: {
@@ -73,7 +73,7 @@ module.exports = {
         display: `standalone`,
         icons: [
           {
-            src: `/doge-icon.png`,
+            src: `/android-chrome-192x192.png`,
             sizes: `192x192`,
             type: `image/png`,
           },
